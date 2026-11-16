@@ -71,7 +71,7 @@ h1,h2,h3,h4{font-family:var(--f-display); text-wrap:balance; margin:0; line-heig
 .hero h1{font-size:clamp(44px, 8vw, 92px); letter-spacing:-.02em; margin-top:14px}
 .hero h1 span{color:var(--accent)}
 .hero .lead{font-size:clamp(18px,2.2vw,22px); max-width:60ch; color:var(--muted); margin:18px 0 0}
-.team{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px; margin-top:40px}
+.team{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px; margin-top:40px}
 .member{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 16px; border-top:4px solid var(--c)}
 .member strong{display:block; font-family:var(--f-display); font-size:19px}
 .member span{font-size:14px; color:var(--muted)}
@@ -214,7 +214,6 @@ footer{padding-block:36px 48px; color:var(--muted); font-size:14px; border-top:1
       <a href="#p-jose"><span class="dot" style="background:var(--p3)"></span>José Antonio</a>
       <a href="#p-juan"><span class="dot" style="background:var(--p2)"></span>Juan</a>
       <a href="#p-eva"><span class="dot" style="background:var(--p1)"></span>Eva</a>
-      <a href="#p-jesus"><span class="dot" style="background:var(--p4)"></span>Jesús</a>
       <a href="#cierre">Cierre</a>
     </nav>
     <span class="hint"><kbd>←</kbd> <kbd>→</kbd> para avanzar</span>
@@ -228,10 +227,9 @@ footer{padding-block:36px 48px; color:var(--muted); font-size:14px; border-top:1
     <h1>Gestor <span>de tareas</span></h1>
     <p class="lead">Una aplicación JavaFX para organizar tus tareas por prioridad, estimar cuánto te van a llevar y ver cuánto te queda. La hemos usado para explicar los diez componentes del Grupo C.</p>
     <div class="team">
-      <div class="member p1"><strong>Eva Gallardo</strong><span>Presentación · TabPane · ScrollPane</span></div>
-      <div class="member p4"><strong>Jesús Seco</strong><span>Demo · HTMLEditor · ProgressIndicator · Cierre</span></div>
-      <div class="member p3"><strong>José Antonio</strong><span>VBox · MenuBar · SplitPane</span></div>
-      <div class="member p2"><strong>Juan Cerrato</strong><span>TextField · RadioButton · Spinner</span></div>
+      <div class="member p1"><strong>Eva Gallardo</strong><span>Presentación · TabPane · ScrollPane · ProgressIndicator</span></div>
+      <div class="member p2"><strong>Juan Cerrato</strong><span>Demo · TextField · RadioButton · Spinner</span></div>
+      <div class="member p3"><strong>José Antonio</strong><span>VBox · MenuBar · SplitPane · HTMLEditor · Cierre</span></div>
     </div>
   </section>
 
@@ -291,7 +289,7 @@ footer{padding-block:36px 48px; color:var(--muted); font-size:14px; border-top:1
 
   <section class="block" id="demo" data-sec>
     <div class="wrap">
-      <div class="eyebrow">Demostración en directo desde IntelliJ · Jesús Seco</div>
+      <div class="eyebrow">Demostración en directo desde IntelliJ · Juan Cerrato</div>
       <h2>Guion de la demo</h2>
       <ol class="steps">
         <li><strong>Abrir la app</strong><span>Salen las tareas guardadas, ordenadas por prioridad y con colores. Las hechas van al final.</span> <em>VBox · ScrollPane</em></li>
@@ -310,7 +308,7 @@ footer{padding-block:36px 48px; color:var(--muted); font-size:14px; border-top:1
 <section class="persona p3" id="p-jose">
   <div class="persona-head" data-sec>
     <h2>José Antonio</h2>
-    <p>VBox · MenuBar / Menu · SplitPane</p>
+    <p>VBox · MenuBar · SplitPane · HTMLEditor</p>
   </div>
   
 <article class="comp p3" id="vbox" data-sec>
@@ -438,6 +436,39 @@ private void mostrarOcultarPanel(ActionEvent event) {
     </div>
   </div>
 </article>
+<article class="comp p3" id="htmleditor" data-sec>
+  <header class="comp-head">
+    <span class="comp-n">04<span class="of">/10</span></span>
+    <h3>HTMLEditor</h3>
+    <span class="chip p3">José Antonio</span>
+  </header>
+  <div class="comp-body">
+    <div class="comp-text">
+      <p class="que">Editor de texto con barra de herramientas: negrita, cursiva, listas, colores… Guarda el texto como HTML. Es la descripción de cada tarea y se guarda tal cual en el fichero.</p>
+      <h4>Propiedades</h4>
+      <table class="props"><tr><th scope="row"><code>htmlText</code></th><td>Contenido del editor en HTML.</td></tr><tr><th scope="row"><code>prefHeight</code></th><td>Alto preferido (200 px).</td></tr><tr><th scope="row"><code>VBox.vgrow</code></th><td>Ocupa el espacio sobrante del formulario.</td></tr><tr><th scope="row"><code>disable</code></th><td>Desactiva el editor y su barra.</td></tr></table>
+      <h4>Eventos y métodos</h4>
+      <ul class="ev"><li><code>getHtmlText()</code><span>Devuelve el contenido en HTML para guardarlo.</span></li><li><code>setHtmlText(html)</code><span>Carga una descripción o la vacía con "".</span></li><li><code>requestFocus()</code><span>Pone el cursor en el editor.</span></li></ul>
+    </div>
+    <div class="code" data-tabs>
+      <div class="code-tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-t="fxml" id="t-htmleditor-fxml">principal.fxml</button>
+        <button role="tab" aria-selected="false" data-t="java" id="t-htmleditor-java">PrincipalController.java</button>
+      </div>
+      <pre data-p="fxml"><code class="language-xml">&lt;?import javafx.scene.web.HTMLEditor?&gt;
+
+&lt;HTMLEditor fx:id="editorDescripcion" prefHeight="200.0" VBox.vgrow="ALWAYS" /&gt;</code></pre>
+      <pre data-p="java" hidden><code class="language-java">// guardar
+String descripcion = editorDescripcion.getHtmlText();
+
+// cargar una tarea
+editorDescripcion.setHtmlText(tarea.getDescripcion());
+
+// nueva tarea
+editorDescripcion.setHtmlText("");</code></pre>
+    </div>
+  </div>
+</article>
 </section>
 
 <section class="persona p2" id="p-juan">
@@ -448,7 +479,7 @@ private void mostrarOcultarPanel(ActionEvent event) {
   
 <article class="comp p2" id="textfield" data-sec>
   <header class="comp-head">
-    <span class="comp-n">04<span class="of">/10</span></span>
+    <span class="comp-n">05<span class="of">/10</span></span>
     <h3>TextField</h3>
     <span class="chip p2">Juan Cerrato</span>
   </header>
@@ -485,7 +516,7 @@ private void contarCaracteres(KeyEvent event) {
 </article>
 <article class="comp p2" id="radiobutton" data-sec>
   <header class="comp-head">
-    <span class="comp-n">05<span class="of">/10</span></span>
+    <span class="comp-n">06<span class="of">/10</span></span>
     <h3>RadioButton / ToggleGroup</h3>
     <span class="chip p2">Juan Cerrato</span>
   </header>
@@ -524,7 +555,7 @@ private void contarCaracteres(KeyEvent event) {
 </article>
 <article class="comp p2" id="spinner" data-sec>
   <header class="comp-head">
-    <span class="comp-n">06<span class="of">/10</span></span>
+    <span class="comp-n">07<span class="of">/10</span></span>
     <h3>Spinner</h3>
     <span class="chip p2">Juan Cerrato</span>
   </header>
@@ -561,12 +592,12 @@ spHoras.getValueFactory().setValue(tarea.getHoras());</code></pre>
 <section class="persona p1" id="p-eva">
   <div class="persona-head" data-sec>
     <h2>Eva Gallardo</h2>
-    <p>TabPane · ScrollPane</p>
+    <p>TabPane · ScrollPane · ProgressIndicator</p>
   </div>
   
 <article class="comp p1" id="tabpane" data-sec>
   <header class="comp-head">
-    <span class="comp-n">07<span class="of">/10</span></span>
+    <span class="comp-n">08<span class="of">/10</span></span>
     <h3>TabPane</h3>
     <span class="chip p1">Eva Gallardo</span>
   </header>
@@ -604,7 +635,7 @@ private void cambioPestana(Event event) {
 </article>
 <article class="comp p1" id="scrollpane" data-sec>
   <header class="comp-head">
-    <span class="comp-n">08<span class="of">/10</span></span>
+    <span class="comp-n">09<span class="of">/10</span></span>
     <h3>ScrollPane</h3>
     <span class="chip p1">Eva Gallardo</span>
   </header>
@@ -636,52 +667,11 @@ private void cambioPestana(Event event) {
     </div>
   </div>
 </article>
-</section>
-
-<section class="persona p4" id="p-jesus">
-  <div class="persona-head" data-sec>
-    <h2>Jesús Seco</h2>
-    <p>HTMLEditor · ProgressIndicator</p>
-  </div>
-  
-<article class="comp p4" id="htmleditor" data-sec>
-  <header class="comp-head">
-    <span class="comp-n">09<span class="of">/10</span></span>
-    <h3>HTMLEditor</h3>
-    <span class="chip p4">Jesús Seco</span>
-  </header>
-  <div class="comp-body">
-    <div class="comp-text">
-      <p class="que">Editor de texto con barra de herramientas: negrita, cursiva, listas, colores… Guarda el texto como HTML. Es la descripción de cada tarea y se guarda tal cual en el fichero.</p>
-      <h4>Propiedades</h4>
-      <table class="props"><tr><th scope="row"><code>htmlText</code></th><td>Contenido del editor en HTML.</td></tr><tr><th scope="row"><code>prefHeight</code></th><td>Alto preferido (200 px).</td></tr><tr><th scope="row"><code>VBox.vgrow</code></th><td>Ocupa el espacio sobrante del formulario.</td></tr><tr><th scope="row"><code>disable</code></th><td>Desactiva el editor y su barra.</td></tr></table>
-      <h4>Eventos y métodos</h4>
-      <ul class="ev"><li><code>getHtmlText()</code><span>Devuelve el contenido en HTML para guardarlo.</span></li><li><code>setHtmlText(html)</code><span>Carga una descripción o la vacía con "".</span></li><li><code>requestFocus()</code><span>Pone el cursor en el editor.</span></li></ul>
-    </div>
-    <div class="code" data-tabs>
-      <div class="code-tabs" role="tablist">
-        <button role="tab" aria-selected="true" data-t="fxml" id="t-htmleditor-fxml">principal.fxml</button>
-        <button role="tab" aria-selected="false" data-t="java" id="t-htmleditor-java">PrincipalController.java</button>
-      </div>
-      <pre data-p="fxml"><code class="language-xml">&lt;?import javafx.scene.web.HTMLEditor?&gt;
-
-&lt;HTMLEditor fx:id="editorDescripcion" prefHeight="200.0" VBox.vgrow="ALWAYS" /&gt;</code></pre>
-      <pre data-p="java" hidden><code class="language-java">// guardar
-String descripcion = editorDescripcion.getHtmlText();
-
-// cargar una tarea
-editorDescripcion.setHtmlText(tarea.getDescripcion());
-
-// nueva tarea
-editorDescripcion.setHtmlText("");</code></pre>
-    </div>
-  </div>
-</article>
-<article class="comp p4" id="progressindicator" data-sec>
+<article class="comp p1" id="progressindicator" data-sec>
   <header class="comp-head">
     <span class="comp-n">10<span class="of">/10</span></span>
     <h3>ProgressIndicator</h3>
-    <span class="chip p4">Jesús Seco</span>
+    <span class="chip p1">Eva Gallardo</span>
   </header>
   <div class="comp-body">
     <div class="comp-text">
@@ -707,11 +697,13 @@ indicadorProgreso.setProgress(progreso);</code></pre>
   </div>
 </article>
 </section>
+
+
   </div>
 
   <section class="block" id="cierre" data-sec>
     <div class="wrap">
-      <div class="eyebrow">Para terminar · Jesús Seco</div>
+      <div class="eyebrow">Para terminar · José Antonio</div>
       <h2>Lo que nos costó y dónde lo aprendimos</h2>
       <div class="cols">
         <div class="card">
@@ -740,12 +732,12 @@ indicadorProgreso.setProgress(progreso);</code></pre>
 </main>
 
 <footer>
-  <div class="wrap">Grupo C · Eva Gallardo, Juan Cerrato, José Antonio y Jesús Seco · Desarrollo de Interfaces, 2º DAM</div>
+  <div class="wrap">Grupo C · Eva Gallardo, Juan Cerrato y José Antonio · Desarrollo de Interfaces, 2º DAM</div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script>
-const DATA = {"vbox": ["VBox", "Raíz de la ventana, formulario y lista de tareas", "p3"], "menubar": ["MenuBar / Menu", "Barra superior: Archivo, Ver y Ayuda", "p3"], "splitpane": ["SplitPane", "Divide la lista (izquierda) y las pestañas (derecha)", "p3"], "textfield": ["TextField", "Título de la tarea y buscador", "p2"], "radiobutton": ["RadioButton / ToggleGroup", "Prioridad de la tarea", "p2"], "spinner": ["Spinner", "Horas estimadas de la tarea", "p2"], "tabpane": ["TabPane", "Pestañas «Tarea» y «Resumen»", "p1"], "scrollpane": ["ScrollPane", "Envuelve la lista de tareas", "p1"], "htmleditor": ["HTMLEditor", "Descripción con formato de la tarea", "p4"], "progressindicator": ["ProgressIndicator", "Pestaña «Resumen»: % de tareas hechas", "p4"]};
+const DATA = {"vbox": ["VBox", "Raíz de la ventana, formulario y lista de tareas", "p3"], "menubar": ["MenuBar / Menu", "Barra superior: Archivo, Ver y Ayuda", "p3"], "splitpane": ["SplitPane", "Divide la lista (izquierda) y las pestañas (derecha)", "p3"], "htmleditor": ["HTMLEditor", "Descripción con formato de la tarea", "p3"], "textfield": ["TextField", "Título de la tarea y buscador", "p2"], "radiobutton": ["RadioButton / ToggleGroup", "Prioridad de la tarea", "p2"], "spinner": ["Spinner", "Horas estimadas de la tarea", "p2"], "tabpane": ["TabPane", "Pestañas «Tarea» y «Resumen»", "p1"], "scrollpane": ["ScrollPane", "Envuelve la lista de tareas", "p1"], "progressindicator": ["ProgressIndicator", "Pestaña «Resumen»: % de tareas hechas", "p1"]};
 
 // Leyenda del esquema y etiquetas sobre cada zona
 const legend = document.getElementById('legend');
